@@ -1,0 +1,19 @@
+{
+    "name": "albears/phpblog",
+    "authors": [
+        {
+            "name": "Alexey Sidorovitch",
+            "email": "sidorovitch@gmail.com"
+        }
+    ],
+    "require": {
+        "filp/whoops": "^2.1",
+        "vlucas/phpdotenv": "~1.1",
+        "altorouter/altorouter": "1.1.0",
+        "twig/twig": "~1.0",
+        "illuminate/database": "5.1.*"
+    },
+    "autoload": {
+        "classmap": ["controllers/"]
+    }
+}
