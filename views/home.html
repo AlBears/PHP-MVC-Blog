@@ -10,9 +10,9 @@
 
         <div class="blog-post">
             <h2 class="blog-post-title">{{ post.title }}</h2>
-            <p class="blog-post-meta">{{ post.date|date("F j, Y, g:ia") }} by <a href="#">{{ post.author }}</a></p>
+            <p class="blog-post-meta">{{ post.date|date("F j, Y, g:i a") }} by <a href="#">{{ post.author }}</a></p>
             <p>{{ post.body | truncate(450)}}</p>
-    		<a class="readmore" href="post.php?id={{post.id}}">Read More</a>
+    		<a class="readmore" href="post/{{post.id}}">Read More</a>
       	</div>
 
         {% endfor %}
@@ -25,7 +25,7 @@
 
 		 <ol class="list-unstyled">
               {% for category in categories %}
-              <li><a href="posts.php?category={{category.id}}">{{category.name}}</a></li>
+              <li><a href="category/{{category.id}}">{{category.name}}</a></li>
               {% endfor %}
           </ol>
 
