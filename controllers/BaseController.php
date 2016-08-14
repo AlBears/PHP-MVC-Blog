@@ -13,6 +13,8 @@ class BaseController {
 		$this->twig = new \Twig_Environment($this->loader, [ 
     	'cache' => false, 'debug' => true
 		]);
+
+		$this->twig->addExtension(new Twig_Extensions_Extension_Text());
 	}
 
 }

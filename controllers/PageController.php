@@ -4,18 +4,21 @@
 
 class PageController extends BaseController {
 
-	public function getShowHomePage(){
-		//include(__DIR__."/../views/home.php");
+	public function getShowHomePage()
+	{
 		$posts = Posts::all();
-
-		echo $this->twig->render('home.html', ['posts'=>$posts]);
+		$categories = Categories::all();
+		echo $this->twig->render('home.html', ['posts'=>$posts, 'categories'=>$categories]);
 	}
+
 	public function getShowPostPage() {
 		echo $this->twig->render('post.html');
 	}
+
 	public function getShowPostsPage() {
 		echo $this->twig->render('posts.html');
 	}
+
 	public function getBaseTest() 
 	{ 
 		$post = Posts::find(1);
