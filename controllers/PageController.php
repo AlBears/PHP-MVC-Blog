@@ -4,40 +4,41 @@
 
 class PageController extends BaseController {
 
-	public function getShowHomePage()
+	public function route()
 	{
 		$posts = Posts::all();
 		$categories = Categories::all();
 		echo $this->twig->render('home.html', ['posts'=>$posts, 'categories'=>$categories]);
 	}
 
-	public function getShowAllCategoriesPage()
+	public function oneLevelRouting()
 	{
+		$uri = explode("/", $_SERVER['REQUEST_URI']);
+		$route = $uri[1];
 		$posts = Posts::all();
 		$categories = Categories::all();
-		echo $this->twig->render('posts.html', ['posts'=>$posts, 'categories'=>$categories]);
+		if ($route === 'posts') { 
+			echo $this->twig->render('posts.html', ['posts'=>$posts, 'categories'=>$categories]);
+		} else {
+			echo $this->twig->render('generic.html', ['categories'=>$categories]);
+		}
 	}
 
-	public function getShowPostPage() 
+	public function twoLevelsRouting() 
 	{
 		$uri = explode("/", $_SERVER['REQUEST_URI']);
-    	$target = $uri[2];
-    	$posts = Posts::where('id', '=', $target)->get();
-    	$categories = Categories::all();
-		echo $this->twig->render('post.html', ['posts'=>$posts, 'categories'=>$categories]);
+		$route = $uri[1];
+		$target = $uri[2];
+		$categories = Categories::all();
+		if ($route === 'post') { 
+    		$posts = Posts::where('id', '=', $target)->get();
+			echo $this->twig->render('post.html', ['posts'=>$posts, 'categories'=>$categories]);
+		} else if ($route === 'category') {
+			$posts = Posts::where('category', '=', $target)->get();
+			echo $this->twig->render('posts.html',['posts'=>$posts, 'categories'=>$categories]);
+		} else {
+			echo $this->twig->render('generic.html', ['categories'=>$categories]);
+		}
 	}
 
-	public function getShowPostsPage() {
-		$uri = explode("/", $_SERVER['REQUEST_URI']);
-    	$target = $uri[2];
-    	$posts = Posts::where('category', '=', $target)->get();
-    	$categories = Categories::all();
-		echo $this->twig->render('posts.html',['posts'=>$posts, 'categories'=>$categories]);
-	}
-
-	public function getBaseTest() 
-	{ 
-		$post = Posts::find(1);
-		echo $post->title;
-	}
 }
