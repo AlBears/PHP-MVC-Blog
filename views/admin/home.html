@@ -1,0 +1,42 @@
+{% extends "admin/base.html" %}
+
+{% block root %}active{% endblock %}
+{% block post %}{% endblock %}
+{% block category %}{% endblock %}
+
+ {% block body %}
+
+ <table class="table table-striped">
+	<tr>
+		<th>Post ID#</th>
+		<th>Post Title</th>
+		<th>Category</th>
+		<th>Author</th>
+		<th>Date</th>
+	</tr>
+{% for post in posts %}
+	<tr>
+		<td>{{post.id}}</td>
+		<td><a href='edit_post.php?id={{post.id}}'>{{post.title}}</td>
+		<td>{{post.name}}</td>
+		<td>{{post.author}}</td>
+		<td>{{ post.date|date("F j, Y, g:i a") }}</td>
+	</tr>
+{% endfor %}
+</table>
+
+<table class="table table-striped">
+	<tr>
+		<th>Category ID#</th>
+		<th>Category Name</th>
+	</tr>
+{% for category in categories %}
+	<tr>
+		<td>{{category.id}}</td>
+		<td><a href='edit_category.php?id={{category.id}}'>{{category.name}}</td>
+	</tr>
+{% endfor %}
+</table>
+
+
+ {% endblock %}

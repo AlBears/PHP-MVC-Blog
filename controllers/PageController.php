@@ -19,6 +19,11 @@ class PageController extends BaseController {
 		$categories = Categories::all();
 		if ($route === 'posts') { 
 			echo $this->twig->render('posts.html', ['posts'=>$posts, 'categories'=>$categories]);
+		} else if ($route === 'admin') {
+			$categorizedPosts = Posts::join('categories', 'posts.category', '=','categories.id')
+									->select('posts.*', 'categories.name')
+									->get();
+			echo $this->twig->render('admin/home.html', ['posts'=>$categorizedPosts, 'categories'=>$categories]);
 		} else {
 			echo $this->twig->render('generic.html', ['categories'=>$categories]);
 		}
