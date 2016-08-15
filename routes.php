@@ -1,5 +1,5 @@
 <?php
 
-$router->map('GET', '/', 'PageController@route', 'home');
-$router->map('GET', '/[*]/[*]', 'PageController@twoLevelsRouting', 'post');
-$router->map('GET', '/[*]', 'PageController@oneLevelRouting', 'posts');
+$router->map('GET', '/', 'PageController@getRoute', 'home');
+$router->map('GET', '/[*]/[*]', 'PageController@getTwoLevelsRouting', 'post');
+$router->map('GET', '/[*]', 'PageController@getOneLevelRouting', 'posts');
